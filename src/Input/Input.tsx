@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { validateInput } from "./helperInput";
 import UncontrolledInput from "./UncontrolledInput";
-import { InputProps } from "./IInputProps";
+import { InputProps, Input } from "./IInputProps";
+
+function toMaskValue(value: string, mask: Function): string {
+  return mask ? mask(value) : value;
+}
 
 /**
  * @description Componente de Input genérico
@@ -25,7 +29,7 @@ export default function Input({
   className,
   name,
   formText
-}: InputProps) {
+}: InputProps): JSX.Element {
   const [localValue, setValue] = useState(toMaskValue(value, mask));
   const [localError, setError] = useState("");
   const [errorProps, setErrorProps] = useState(error);
@@ -99,7 +103,3 @@ Input.defaultProps = {
   type: "text",
   value: ""
 };
-
-function toMaskValue(value, mask) {
-  return mask ? mask(value) : value;
-}
