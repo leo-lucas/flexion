@@ -2,32 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { validateInput } from "./helperInput";
 import UncontrolledInput from "./UncontrolledInput";
-
-/**
- * @description Props do Input
- * @typedef InputProps
- * @property {string} formText
- * @property {string} name
- * @property {string} className
- * @property {boolean} onValidate
- * @property {string} error
- * @property {string} value
- * @property {string} type
- * @property {boolean} allCondition
- * @property {function} mask
- * @property {array} validations
- * @property {function} onChange
- * @property {string} placeholder
- * @property {string} controlId
- * @property {string} label
- */
+import { InputProps } from "./IInputProps";
 
 /**
  * @description Componente de Input genérico
  * @author Leonardo Lucas dos Santos
  * @copyright 09/2019
- * @param {InputProps} props
- * @returns {JSX.Element}
  */
 export default function Input({
   label,
@@ -45,7 +25,7 @@ export default function Input({
   className,
   name,
   formText
-}) {
+}: InputProps) {
   const [localValue, setValue] = useState(toMaskValue(value, mask));
   const [localError, setError] = useState("");
   const [errorProps, setErrorProps] = useState(error);
